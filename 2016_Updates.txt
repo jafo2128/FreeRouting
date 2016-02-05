@@ -1,0 +1,93 @@
+Tool for KiCad
+
+Recompiling instructions found on the net for FreeRouting
+using a variant of say Ubuntu or other they sudgesting doing the following to get it compiled and installed:
+
+_________________________________________
+Download em... 
+
+Using Web...
+Browse to:
+https://github.com/jafo2128/FreeRouting
+Then off to the far Right click on Download ZIP
+save it to your Linux Home directory.
+Unzip it.. 
+
+Example $ unzip file.zip -d destination_folder
+so for your home folder :
+
+$ unzip ~/FreeRouting-master.zip -d ~/
+$ cd ~/FreeRouting-master
+
+
+
+Using Git...
+$ cd ~
+$ git clone https://github.com/nikropht/FreeRouting
+$ cd FreeRouting
+
+# 1. Check prerequisites:
+----------------
+jh.jar and netx.jar must be available on your system before building
+FreeRouting. To do this on a Debian-like system (especaially
+Ubuntu) javahelp2 and icedtea-netx-common must be installed.
+
+Part a:
+ download the tools.
+ $ sudo apt-get install javahelp2 icedtea-netx-common
+
+
+
+
+Part B:
+
+create a script:
+
+$ touch precheckit
+$ nano precheckit
+or 
+$ vi precheckit
+
+#!/bin/sh
+if [ ! -f /usr/share/java/jh.jar ] \n || [ ! -f /usr/share/icedtea-web/netx.jar ]
+then sudo apt-get install javahelp2 icedtea-netx-common
+fi
+
+Save it..  Then change its file permitions
+
+$ chmod +X precheckit
+now run the script... pay attention to the period/dot in front of the foreward slash or this does not work
+
+$ ./precheckit
+
+
+# 2. Compile:
+
+$ touch compileit
+$ nano compileit
+or 
+$ vi compileit
+
+#!/bin/sh
+if javac -classpath /usr/share/java/jh.jar:/usr/share/icedtea-web/netx.jar \n `find -type f -name "*.java"`
+then jar cfe fr.jar gui.MainApplication \n `find -type f ( -name "*.class" -o -name "*.properties" )`
+else echo "*** Some .java file was not compiled. See above" 1>&2
+exit 1
+fi
+
+Save it..  Then change its file permitions
+$ chmod +X compileit
+
+now run the script...
+$ ./comileit
+
+# 3. Run:
+java -jar fr.jar
+
+You could substitute the fr.jar in these little script snippets.. 
+
+Hopefully this all works... 
+
+Cheers,  Jafo!
+
+UD 2016-02
