@@ -10,6 +10,10 @@ Option A:
 
 update da java on ya linux build.   Windows do ya java updates or head over to java.com and download a fresh java.. (Note not your average cup of mud/joe! just saying... )
 
+from Oracle...
+http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html
+
+
 Under linux CLI / Terminal session.. 
 $ sudo apt-get install openjdk-8-jre-headless
 
